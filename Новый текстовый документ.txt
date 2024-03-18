@@ -1,0 +1,52 @@
+// Online C compiler to run C program online
+#include <stdio.h>
+void input(char *data, int *size);
+void prov(char *str1, char* str2, int size1, int size2, int *stat, int *stop);
+void start(char *str1, char* str2, int size1, int *size2, int stat, int stop);
+
+int main() {
+    char str1[1000];
+    char str2[1000];
+   int size1=0, size2=0, stat, stop;
+   input(str1, &size1);
+   input(str2, &size2);
+   prov(str1, str2, size1, size2, &stat, &stop);
+   size2=0;
+   start(str1, str2, size1, &size2, stat, stop);
+   
+   printf("%s", str2);
+
+    return 0;
+}
+
+void input(char *str, int *size){
+    char c;
+    while((c=getchar()) != '\n'){
+        str[*size]=c;
+        (*size)++;
+    }
+    str[*size]='\0';
+}
+void prov(char *str1, char* str2, int size1, int size2, int *stat, int *stop){
+for(int i=size1-1; i>-1; i-- ){
+    int l=i;
+    int j =size2-1;
+    while(j>-1 && l>-1 && (str1[l] == str2[j])){
+        --j;
+        --l; }
+        if(j==-1){
+            *stat=l+1;
+            *stop=i;
+            break;
+        }
+    }
+}
+void start(char *str1, char* new_str, int size1, int *size2, int stat, int stop)
+{
+    for (int i=0; i<size1; i++){
+        if(i<stat|| i>stop){
+            new_str[*size2]=str1[i];
+            (*size2)++;}
+            new_str[*size2]= '\0';
+        }
+    }

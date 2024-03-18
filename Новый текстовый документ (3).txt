@@ -1,0 +1,28 @@
+#include<stdio.h>
+
+int main(){
+    char data[1000];
+    char c;
+    int size=0;
+    int flag=1;
+    while((c=getchar())!= '\n'){
+        if(c>64 && c<91){c=c+32;}
+        data[size]=c;
+        size++;
+    }
+    data[size]='\n';
+    for(int i=0, j=size-1; i<j; i++, j--){
+        if(data[i] != data[j]){
+            flag=0;
+        }
+    }
+        if(flag){
+            printf("YES");
+        }
+        else{
+            printf("NO");
+        }
+    
+    
+    
+}
